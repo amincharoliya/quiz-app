@@ -1,1 +1,1 @@
-# Quiz Ap built with React and API
+# Quiz App built with React and API
