@@ -18,7 +18,7 @@ const Footer = () => {
     return (
         <FooterWrap>
             <div className="wrapper">
-                <p>Developed with 💗 by <a href="https://www.amincharoliya.com" target="_blank" rel="noreferrer">Amin</a></p>
+                <p>Developed with 💗 by <a href="https://www.amincharoliya.com" target="_blank" rel="noreferrer">Amin</a>, Code on <a href="https://www.github.com/amincharoliya/quiz-app" target="_blank" >GitHub</a></p>
             </div>
         </FooterWrap>
     )
