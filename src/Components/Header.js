@@ -9,6 +9,11 @@ const HeadWrapper = styled.div`
   justify-content: flex-start;
   justify-content: space-between;
   width: 100%;
+
+  @media screen and (max-width: 480px) {
+    flex-flow: column;
+    text-align: center;
+  }
 `
 
 const HeaderSection = styled.header`
@@ -29,6 +34,13 @@ const Logo = styled.div`
         text-decoration: none;
         font-size: 26px;
         font-weight: 900;
+    }
+
+    @media screen and (max-width: 480px) {
+        width: 100%;
+        max-width: initial;
+        text-align: center;
+        margin-bottom: 10px;
     }
 `
 const Nav = styled.nav`

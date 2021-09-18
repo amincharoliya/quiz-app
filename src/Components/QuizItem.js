@@ -13,7 +13,6 @@ const QuizItemWrap = styled.div`
 
     h3 {
         font-size: 18px;
-        text-transform: uppercase;
         min-height: 36px;
     }
 

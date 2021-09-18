@@ -32,6 +32,10 @@ const QuizQuestionHeading = styled.h2`
     font-size: 28px;
     margin-bottom: 25px;
     text-align: center;
+
+    @media screen and (max-width:560px) {
+      font-size: 22px;
+    }
 `
 const QuizQuestionOptionsWrap = styled.div`
     display: flex;
@@ -54,6 +58,10 @@ const QuizQuestionOption = styled.button`
 
     &:hover {
         border-color: #333;
+    }
+
+    @media screen and (max-width:560px) {
+      width: 100%;
     }
 `
 
@@ -96,6 +104,7 @@ const QuizQuestionScreen = (props) => {
     return(
         
         Questions.length > 0 ? (<QuizQuestionsWrap>
+            <p>Question {currentQuestion+1}</p>
             <div className="wrapper">
                 <QuizQuestion>
                     <QuizQuestionHeading dangerouslySetInnerHTML={{ __html: Questions[currentQuestion].question }}></QuizQuestionHeading>

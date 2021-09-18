@@ -41,6 +41,10 @@ const Heading = styled.h2`
     line-height: 1.3;
     font-weight: 700;
     letter-spacing: -1.2px;
+
+    @media screen and (max-width:480px) {
+      font-size: 28px;
+    }
 `
 
 const Listing = styled.ul`

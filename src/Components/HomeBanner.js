@@ -43,6 +43,10 @@ const Heading = styled.h1`
     strong {
         font-weight: 900;
     }
+
+    @media screen and (max-width:768px) {
+      font-size: 28px;
+    }
 `
 const CTA = styled.a`
     color: #fff !important;

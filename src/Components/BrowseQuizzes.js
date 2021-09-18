@@ -16,6 +16,12 @@ const QuizItemListWrap = styled.section`
         text-align: center;
         margin-bottom: 45px;
     }
+
+    @media screen and (max-width:480px) {
+      h2{
+          font-size: 28px;
+      }
+    }
 `
 
 const QuizItemListing = styled.section`

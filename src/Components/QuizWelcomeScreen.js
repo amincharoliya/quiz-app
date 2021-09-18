@@ -11,6 +11,10 @@ const QuizColumn = styled.div`
         margin: 0;
         letter-spacing: 0.5px;
     }
+
+    @media screen and (max-width:480px) {
+      width: 100%;
+    }
 `
 
 const QuizDetails = styled.div`
@@ -23,6 +27,10 @@ const QuizDetails = styled.div`
     border-radius: 5px;
     max-width: 80%;
     margin: auto;
+
+    @media screen and (max-width:480px) {
+      flex-wrap: wrap;
+    }
 `
 
 const QuizWelcomeScreen = ({quizType,setQuizStarted}) => {
