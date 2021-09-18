@@ -98,7 +98,7 @@ const Header = (props) => {
                     <HeadWrapper>
                         <Logo>
                             <Link to='/'>
-                                Coder's Quiz
+                                AtoZ Quiz
                             </Link>
                         </Logo>
 
