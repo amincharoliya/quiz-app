@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 
 const CreditPage = styled.section`
-    background-color: #f7f7f7;
+    background-color: var(--main-bg-color);
     padding: 55px 15px;
     min-height: calc(100vh - 132px);
     display: flex;

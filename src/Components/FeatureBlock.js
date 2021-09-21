@@ -13,7 +13,7 @@ const Banner = styled.div`
   }
 `
 const FeatureBlockWrap = styled.section`
-background-color: #fff;
+background-color: var(--secondary-bg-color);
 `
 
 const Column = styled.div`
@@ -51,7 +51,7 @@ const Listing = styled.ul`
     list-style: none;
     padding:0;
     margin:0;
-    color: #252424;
+    color: var(--main-text-color);
     font-weight: normal;
 
     li {

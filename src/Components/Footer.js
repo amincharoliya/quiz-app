@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterWrap = styled.section`
-  background-color: #fff;
+  background-color: var(--secondary-bg-color);
   padding: 25px 0;
   text-align: center;
 

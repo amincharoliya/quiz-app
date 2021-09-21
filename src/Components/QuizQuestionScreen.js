@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const QuizQuestionsWrap = styled.div`
     text-align: center;
-    background-color: #f2f2f2;
+    background-color: var(--main-bg-color);
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -15,7 +15,7 @@ const QuizQuestionsWrap = styled.div`
 const QuizQuestion = styled.div`
     display: flex;
     flex-flow: column;
-    background-color: #fff;
+    background-color: var(--secondary-bg-color);
     border-radius: 4px;
     padding: 15px;
 
@@ -50,14 +50,15 @@ const QuizQuestionOption = styled.button`
     border-radius: 4px;
     transition: all ease 0.2s;
     cursor: pointer;
-    background-color: #e8dfdf;
+    background-color: var(--main-bg-color);
+    color:  var(--main-text-color);
     padding: 10px 15px;
     font-size: 13px;
     white-space: pre-wrap;
     letter-spacing: 0;
 
     &:hover {
-        border-color: #333;
+        border-color: var(--main-text-color);
     }
 
     @media screen and (max-width:560px) {
@@ -117,7 +118,7 @@ const QuizQuestionScreen = (props) => {
                 </QuizQuestion>
             </div>
         </QuizQuestionsWrap>) :
-        (' Fetching questions...')
+        (<p>Fetching questions...</p>)
     )
 
 }

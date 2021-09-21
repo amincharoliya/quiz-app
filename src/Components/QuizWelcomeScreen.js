@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import categories from '../utils/Categories';
 
 const QuizColumn = styled.div`
-    background-color: #fff;
+    background-color: var(--secondary-bg-color);
     padding: 15px;
     width: 50%;
 
@@ -18,7 +18,7 @@ const QuizColumn = styled.div`
 `
 
 const QuizDetails = styled.div`
-    background-color: #fff;
+    background-color: var(--secondary-bg-color);
     padding: 15px;
     display: flex;
     flex-flow: row;

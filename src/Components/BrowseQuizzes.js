@@ -7,7 +7,7 @@ import QuizItem from './QuizItem';
 import categories from '../utils/Categories';
 
 const QuizItemListWrap = styled.section`
-    background-color: #f7f7f7;
+    background-color: var(--main-bg-color);
     padding: 55px 15px;
 
     h2 {

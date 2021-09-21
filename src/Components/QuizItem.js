@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 const QuizItemWrap = styled.div`
-    background-color: #fff;
+    background-color: var(--secondary-bg-color);
     padding: 20px;
     text-align: center;
+    border-radius: 4px;
 
     img {
         max-width: 100px;

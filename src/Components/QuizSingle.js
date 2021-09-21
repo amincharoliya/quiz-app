@@ -12,7 +12,7 @@ const QuizWrap = styled.div`
     letter-spacing: -1.2px;
     line-height: 1.6;
     text-align: center;
-    background-color: #f2f2f2;
+    background-color: var(--main-bg-color);
     display: flex;
     flex-flow: column;
     align-items: center;
