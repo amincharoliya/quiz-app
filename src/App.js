@@ -4,11 +4,11 @@ import {
   Route
 } from "react-router-dom";
 
-import Home from './Components/Home';
-import QuizSingle from './Components/QuizSingle';
-import BrowseQuizzes from './Components/BrowseQuizzes';
-import Credits from './Components/Credits';
-import NoMatch from './Components/NoMatch';
+import Home from './components/Home';
+import QuizSingle from './components/QuizSingle';
+import BrowseQuizzes from './components/BrowseQuizzes';
+import Credits from './components/Credits';
+import NoMatch from './components/NoMatch';
 
 function App() {
   return (
