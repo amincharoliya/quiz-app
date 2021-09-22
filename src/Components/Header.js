@@ -11,9 +11,10 @@ const HeadWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 620px) {
     flex-flow: column;
     text-align: center;
+    position: relative;
   }
 `
 
@@ -37,7 +38,7 @@ const Logo = styled.div`
         font-weight: 900;
     }
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 620px) {
         width: 100%;
         max-width: initial;
         text-align: center;
@@ -180,6 +181,12 @@ const ThemeSwitch = styled.nav`
             
         }
 
+    }
+
+    @media screen and (max-width: 620px) {
+        position: absolute;
+        right: -28px;
+        bottom: -5px;
     }
 `
 
