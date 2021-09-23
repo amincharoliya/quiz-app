@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import QuizItem from './QuizItem';
 
-import categories from '../utils/Categories';
+import categories from '../utils/categories';
 
 const QuizItemListWrap = styled.section`
     background-color: var(--main-bg-color);
