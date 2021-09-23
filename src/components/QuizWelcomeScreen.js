@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import categories from '../utils/Categories';
+import categories from '../utils/categories';
 
 const QuizColumn = styled.div`
     background-color: var(--secondary-bg-color);
