@@ -232,8 +232,8 @@ const Header = (props) => {
 
                         <Nav>
                             <ul>
-                                <li> <a href="/quizzes">Quiz types</a> </li>
-                                <li> <a href="/credits">Credits</a> </li>
+                                <li> <Link to="/quizzes">Quiz types</Link> </li>
+                                <li> <Link to="/credits">Credits</Link> </li>
                             </ul>
                         </Nav>
 

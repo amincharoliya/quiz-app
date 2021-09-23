@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const Banner = styled.div`
@@ -48,7 +49,7 @@ const Heading = styled.h1`
       font-size: 28px;
     }
 `
-const CTA = styled.a`
+const CTA = styled.span`
     color: #fff !important;
     text-decoration: none;
     background-color: #f53838;
@@ -72,7 +73,9 @@ const HomeBanner = () => {
                     <Heading>
                         Brush up your knowledge<br/> by taking <strong> Quizzes</strong>
                     </Heading>
-                    <CTA href="/quizzes">Browse Quizzes</CTA>
+                    <Link to='/quizzes'>
+                        <CTA href="/">AtoZ Quiz</CTA>
+                    </Link>
                 </Column>
                 <Column>
                     <img src="./images/web-developer.png" alt="Quiz" />

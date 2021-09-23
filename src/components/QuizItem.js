@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
-
 const QuizItemWrap = styled.div`
     background-color: var(--secondary-bg-color);
     padding: 20px;
@@ -51,7 +51,7 @@ const QuizItem = (props) => {
         <QuizItemWrap>
             <h3 dangerouslySetInnerHTML={{__html: props.title}} />
             <p dangerouslySetInnerHTML={{__html: props.description}} />
-            <a href={props.ctaLink} className="cta-button">Take Quiz <span>→</span></a>
+            <Link to={props.ctaLink} className="cta-button">Take Quiz <span>→</span></Link>
         </QuizItemWrap>
     )
 }
