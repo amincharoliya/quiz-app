@@ -52,7 +52,7 @@ const BrowseQuizzes = (props) => {
             <Header history={props.history}/>
             <QuizItemListWrap>
                 <div className="wrapper">
-                    <h2>Our most taken quizzes</h2>
+                    <h2>Select any quiz category</h2>
                     <QuizItemListing>
                        {categoryItems}
                     </QuizItemListing>
