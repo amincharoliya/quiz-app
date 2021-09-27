@@ -74,7 +74,7 @@ const GlobalStyle = createGlobalStyle`
     }
     h1,h2,h3,p,ul{margin-bottom:25px;color:var(--main-text-color);}
     li{margin-bottom:10px;}
-    p,ul{font-weight: normal;}
+    p,ul{font-weight: normal;line-height: 1.4;}
     code {
         background-color: var(--main-bg-color);
         padding: 10px 15px;
