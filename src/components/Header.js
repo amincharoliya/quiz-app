@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
+
+import { connect } from "react-redux"
+import { additionData } from "../redux/Data/data.actions"
+
 import GlobalStyle from '../globalStyles';
 import { setTheme } from '../utils/settheme';
 
@@ -191,10 +195,6 @@ const ThemeSwitch = styled.nav`
 `
 
 const Header = (props) => {
-    if( props.history && props.history.location.pathname.includes(':') ) {
-        var CustomURL = props.history.location.pathname.split(':')[0].replace('/','');
-    }
-
     const [togClass, setToggleClass] = React.useState('dark');
     let theme = localStorage.getItem('theme');
 
@@ -237,6 +237,12 @@ const Header = (props) => {
                             </ul>
                         </Nav>
 
+                        <Nav>
+                            <ul>
+                                <li> <Link to="/user">{props.data.name}</Link> </li>
+                            </ul>
+                        </Nav>
+
                         <ThemeSwitch>
                             {
                                 togClass === "light" ?
@@ -256,5 +262,16 @@ const Header = (props) => {
     )
 }
 
-
-export default Header;
+const mapStateToProps = state => {
+    return {
+      data: state.data.quizzes,
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      additionData: (payload) => dispatch(additionData(payload))
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Header)

@@ -1,26 +1,29 @@
 import { ADDITION } from './data.types';
 
+const username = window.localStorage.getItem('name');
 
-    const INITIAL_STATE = {
-        quizzes: {},
-    };
+const INITIAL_STATE = {
+    quizzes: {
+        name: username !== null ? username : 'Guest'
+    },
+};
 
-    const reducer = (state = INITIAL_STATE, action) => {
+const reducer = (state = INITIAL_STATE, action) => {
 
-        switch (action.type) {
+    switch (action.type) {
 
-            case ADDITION:
-                const newData = action.payload;
-               return {
+        case ADDITION:
+            const newData = action.payload;
+            return {
 
-                 ...state, quizzes: {name: newData},
+                ...state, quizzes: {name: newData},
 
-               };
+            };
 
-             default: return state;
+            default: return state;
 
-        }
+    }
 
-    };
+};
 
 export default reducer;
