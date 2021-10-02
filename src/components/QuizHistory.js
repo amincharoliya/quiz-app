@@ -2,9 +2,6 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
-import { connect } from "react-redux"
-import { additionData } from "../redux/Data/data.actions"
-
 import QuizItem from './QuizItem'
 
 const NoData = styled.div`
@@ -45,8 +42,8 @@ const QuizItemListing = styled.section`
 `
 
 const QuizHistory = (props) => {
-  const quizData = props.data.quizzes.quizData;
-  if(!props.data.quizzes.quizData) {
+  const quizData = props.data;
+  if(!props.data) {
     return(
       <div className="wrapper">
         <NoData>
@@ -72,16 +69,4 @@ const QuizHistory = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-      data: state.data,
-    }
-  }
-  
-  const mapDispatchToProps = dispatch => {
-    return {
-      additionData: (payload) => dispatch(additionData(payload))
-    }
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(QuizHistory)
+export default QuizHistory;

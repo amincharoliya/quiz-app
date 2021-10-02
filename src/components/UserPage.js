@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { connect } from "react-redux"
+
 import Header from './Header'
 import Footer from './Footer'
 import QuizHistory from './QuizHistory'
@@ -26,8 +28,8 @@ const Container = styled.section`
 const QuizHistoryBlock = styled.div`
 `
 
-const UserPage = () => {
-
+const UserPage = (props) => {
+    const data = props.data;
     return(
         <>
             <Header />
@@ -36,7 +38,7 @@ const UserPage = () => {
                     <main>
                         <QuizHistoryBlock>
                             <h2>Recently Taken Quizzes</h2>
-                            <QuizHistory />
+                            <QuizHistory data={data} />
                         </QuizHistoryBlock>
                     </main>
                 </div>
@@ -46,4 +48,10 @@ const UserPage = () => {
     )
 }
 
-export default UserPage;
+const mapStateToProps = state => {
+    return {
+      data: state.data.quizzes.quizData,
+    }
+  }
+ 
+export default connect(mapStateToProps)(UserPage)
