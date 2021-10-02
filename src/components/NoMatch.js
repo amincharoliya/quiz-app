@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 
 
-const _404Page = styled.section`
+const Page_404 = styled.section`
     background-color: var(--main-bg-color);
     padding: 55px 15px;
     min-height: calc(100vh - 132px);
@@ -30,12 +30,12 @@ const NoMatch = () => {
     return (
         <>
         <Header />
-            <_404Page>
+            <Page_404>
                 <div className="wrapper">
                     <h1>Page not found!</h1>
-                    <img src='./images/404.svg' />
+                    <img src='./images/404.svg' alt="404" />
                 </div>
-            </_404Page>
+            </Page_404>
             <Footer />
         </>
     )

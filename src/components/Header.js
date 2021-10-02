@@ -271,7 +271,6 @@ const DeviceMenu = styled.div`
             height: 3px;
             width: 28px;
             background-color: var(--main-text-color);
-        
         }
 
         :before {
