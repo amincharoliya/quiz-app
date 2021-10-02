@@ -1,11 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
-
 import GlobalStyle from '../globalStyles';
 import { setTheme } from '../utils/settheme';
-
-import UserBlock from './UserBlock';
 
 const HeadWrapper = styled.div`
   display: flex;
@@ -193,7 +190,11 @@ const ThemeSwitch = styled.nav`
     }
 `
 
-const Header = () => {
+const Header = (props) => {
+    if( props.history && props.history.location.pathname.includes(':') ) {
+        var CustomURL = props.history.location.pathname.split(':')[0].replace('/','');
+    }
+
     const [togClass, setToggleClass] = React.useState('dark');
     let theme = localStorage.getItem('theme');
 
@@ -236,17 +237,12 @@ const Header = () => {
                             </ul>
                         </Nav>
 
-                        <Nav>
-                            <ul>
-                                <li>
-                                    <UserBlock />
-                                 </li>
-                            </ul>
-                        </Nav>
-
                         <ThemeSwitch>
                             {
-                                <input type="checkbox" id="toggle" className="toggle--checkbox" onChange={SwitchTheme} checked={togClass === "light" ? 'checked' : ''}  />
+                                togClass === "light" ?
+                                <input type="checkbox" id="toggle" className="toggle--checkbox" onClick={SwitchTheme} checked />
+                                :
+                                <input type="checkbox" id="toggle" className="toggle--checkbox" onClick={SwitchTheme} />
                             }
                             <label htmlFor="toggle" className="toggle--label">
                                 <span className="toggle--label-background"></span>
@@ -259,5 +255,6 @@ const Header = () => {
         </div>
     )
 }
+
 
 export default Header;
