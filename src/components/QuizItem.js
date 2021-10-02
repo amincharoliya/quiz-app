@@ -30,7 +30,7 @@ const QuizItemWrap = styled.div`
         color: #fff;
         text-decoration: none;
         transition: all ease 0.3s;
-        max-width: 170px;
+        max-width: 190px;
         margin: auto;
         border-radius: 5px;
 
@@ -51,7 +51,7 @@ const QuizItem = (props) => {
         <QuizItemWrap>
             <h3 dangerouslySetInnerHTML={{__html: props.title}} />
             <p dangerouslySetInnerHTML={{__html: props.description}} />
-            <Link to={props.ctaLink} className="cta-button">Take Quiz <span>→</span></Link>
+            <Link to={props.ctaLink} className="cta-button">{props.ctaText ? props.ctaText : 'Take Quiz'} <span>→</span></Link>
         </QuizItemWrap>
     )
 }

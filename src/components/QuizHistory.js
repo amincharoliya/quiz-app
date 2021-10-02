@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { connect } from "react-redux"
 import { additionData } from "../redux/Data/data.actions"
 
+import QuizItem from './QuizItem'
+
 const NoData = styled.div`
   padding: 35px 0;
   text-align: center;
@@ -17,9 +19,33 @@ const NoData = styled.div`
     text-decoration: none;
   }
 `
+const QuizItemListing = styled.section`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    > div {
+        margin: 0 10px 20px 10px;
+        width: calc(33.33333% - 20px);
+    }
+
+    p strong {
+      font-weight: 600;
+    }
+
+    @media screen and (max-width:768px) {
+        flex-direction: column;
+
+        > div {
+            width: 100%;
+            margin: 0 0 25px 0;
+        } 
+
+    }
+`
 
 const QuizHistory = (props) => {
-  console.log(props.data);
+  const quizData = props.data.quizzes.quizData;
   if(!props.data.quizzes.quizData) {
     return(
       <div className="wrapper">
@@ -31,8 +57,18 @@ const QuizHistory = (props) => {
     )
   }
 
+  const categoryList = Object.keys(quizData);
+  const categoryItems = categoryList.map( (item, i) => (
+    <QuizItem
+      key={Number(i)}
+      description={`You Scored <strong>${quizData[i].score} out of 10 </strong> <br/> <br/> Taken on <strong>${quizData[i].date}</strong>`}
+      title={quizData[i].name}
+      ctaText="Take quiz again" ctaLink={`/quiz:${Number(quizData[i].id)}`} /> ) );
+
     return(
-        <p>Has data.</p>
+      <QuizItemListing>
+        {categoryItems}
+      </QuizItemListing>
     )
 }
 

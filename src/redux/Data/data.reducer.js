@@ -9,11 +9,13 @@ const INITIAL_STATE = {
             name: 'General Knowledge',
             score: '9',
             id: '9',
+            date: 'Sat Oct 02 2021'
         },
         {
             name: 'Entertainment: Music',
             score: '7',
             id: '12',
+            date: 'Sat Oct 02 2021'
         }]
     },
 };
