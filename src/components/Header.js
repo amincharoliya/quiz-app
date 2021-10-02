@@ -14,7 +14,7 @@ const HeadWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  @media screen and (max-width: 620px) {
+  @media screen and (max-width: 768px) {
     flex-flow: column;
     text-align: center;
     position: relative;
@@ -23,11 +23,20 @@ const HeadWrapper = styled.div`
 
 const HeaderSection = styled.header`
   padding: 15px;
+
+  &.nav_is_open {
+
+    .user-navigation,
+    .navigation {
+        right: 0;
+    }
+
+  } 
 `
 
 const Logo = styled.div`
-    max-width:200px;
-    min-width: 200px;
+    max-width:170px;
+    min-width: 170px;
 
     img {
         max-width:100%;
@@ -41,11 +50,10 @@ const Logo = styled.div`
         font-weight: 900;
     }
 
-    @media screen and (max-width: 620px) {
+    @media screen and (max-width: 768px) {
         width: 100%;
         max-width: initial;
         text-align: center;
-        margin-bottom: 10px;
     }
 `
 const Nav = styled.nav`
@@ -88,6 +96,48 @@ const Nav = styled.nav`
         transition: all ease 0.3s;
         text-align: center;
         display:none;
+    }
+
+    @media screen and (max-width: 768px) {
+
+        &.navigation {
+            position: fixed;
+            right: -240px;
+            top: 0;
+            bottom: 0;
+            width: 240px;
+            background-color: var(--main-bg-color);
+            z-index: 1;
+            align-items: flex-start;
+            transition: all ease 0.3s;
+
+            ul {
+                width: 100%;
+            }
+            
+            li {
+                width: 100%;
+                text-align: left;
+                margin: 0;
+
+                a {
+                    width: 100%;
+                    padding: 15px 10px;
+                    border-bottom: 1px solid var(--secondary-bg-color);
+                }
+            }
+        }
+
+        &.user-navigation {
+            position: fixed;
+            bottom: 0;
+            right: -240px;
+            z-index: 1;
+            width: 240px;
+            transition: all ease 0.3s;
+            padding: 15px 0;
+            border-top: 1px solid var(--secondary-bg-color);
+        }
     }
 `
 
@@ -186,15 +236,61 @@ const ThemeSwitch = styled.nav`
 
     }
 
-    @media screen and (max-width: 620px) {
+    @media screen and (max-width: 768px) {
         position: absolute;
-        right: -28px;
-        bottom: -5px;
+        right: -26px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 `
+const DeviceMenu = styled.div`
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 28px;
+    width: 28px;
+    display: block;
+    cursor: pointer;
+    display: none;
+
+    span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 28px;
+        background-color: var(--main-text-color);
+
+        :before,
+        :after {
+            content:'';
+            position: absolute;
+            top: 10px;
+            left: 0;
+            height: 3px;
+            width: 28px;
+            background-color: var(--main-text-color);
+        
+        }
+
+        :before {
+            top: 20px;
+        }
+
+    }
+
+    @media (max-width: 768px) {
+        display: block;
+    }
+`
+    
+
+    
 
 const Header = () => {
     const [togClass, setToggleClass] = React.useState('dark');
+    const [mobileNav, setmobileNav] = React.useState(false);
     let theme = localStorage.getItem('theme');
 
     const SwitchTheme = () => {
@@ -219,7 +315,7 @@ const Header = () => {
 
     return (
         <div className="wrapper">
-            <HeaderSection>
+            <HeaderSection className={mobileNav ? 'nav_is_open' : ''}>
                 <>
                     <GlobalStyle/ >
                     <HeadWrapper>
@@ -229,14 +325,19 @@ const Header = () => {
                             </Link>
                         </Logo>
 
-                        <Nav>
+                        <Nav className='navigation'>
                             <ul>
                                 <li> <Link to="/quizzes">Quiz types</Link> </li>
+                                <li> <a href="/user">History</a> </li>
                                 <li> <Link to="/credits">Credits</Link> </li>
                             </ul>
                         </Nav>
 
-                        <Nav>
+                        <DeviceMenu onClick={() => (setmobileNav(!mobileNav))}>
+                            <span></span>
+                        </DeviceMenu>
+
+                        <Nav className="user-navigation">
                             <ul>
                                 <li>
                                     <UserBlock />
