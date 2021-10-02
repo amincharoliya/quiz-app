@@ -3,7 +3,7 @@ import Footer from './Footer';
 import styled from 'styled-components';
 
 
-const CreditPage = styled.section`
+const Container = styled.section`
     background-color: var(--main-bg-color);
     padding: 55px 15px;
     min-height: calc(100vh - 132px);
@@ -17,11 +17,11 @@ const Credits = (props) => {
     return(
         <>
             <Header history={props.history}/>
-            <CreditPage>
+            <Container>
             <div className="wrapper">
-                <p>Quiz data is pulled from <a href="https://opentdb.com/" target="_blank">https://opentdb.com/</a>, big thanks to the team for developing the awesome API. Read more about API <a href="https://opentdb.com/api_config.php" target="_blank">here</a>.</p>
+                <p>Quiz data is pulled from <a href="https://opentdb.com/" target="_blank" rel="noreferrer">https://opentdb.com/</a>, big thanks to the team for developing the awesome API. Read more about API <a href="https://opentdb.com/api_config.php" target="_blank" rel="noreferrer">here</a>.</p>
             </div>
-            </CreditPage>
+            </Container>
             <Footer />
         </>
     )

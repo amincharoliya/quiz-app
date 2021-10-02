@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Header from './Header';
 import Footer from './Footer';
 import styled from 'styled-components';
@@ -44,6 +46,8 @@ const QuizItemListing = styled.section`
     }
 `
 
+
+
 const BrowseQuizzes = (props) => {
     const categoryList = Object.keys(categories);
     const categoryItems = categoryList.map( (item) => ( <QuizItem key={Number(item)} description={categories[Number(item)].description} title={categories[Number(item)].title} ctaLink={`/quiz:${Number(item)}`} /> ) );
@@ -52,6 +56,7 @@ const BrowseQuizzes = (props) => {
             <Header history={props.history}/>
             <QuizItemListWrap>
                 <div className="wrapper">
+                
                     <h2>Select any quiz category</h2>
                     <QuizItemListing>
                        {categoryItems}
@@ -64,3 +69,4 @@ const BrowseQuizzes = (props) => {
 }
 
 export default BrowseQuizzes;
+  
