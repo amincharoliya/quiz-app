@@ -4,6 +4,8 @@ import styled from 'styled-components';
 const Container = styled.section`
     position: fixed;
     inset: 0;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.5);
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
     display: flex;

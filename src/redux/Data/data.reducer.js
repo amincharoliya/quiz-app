@@ -4,7 +4,17 @@ const username = window.localStorage.getItem('name');
 
 const INITIAL_STATE = {
     quizzes: {
-        name: username !== null ? username : 'Guest'
+        name: username !== null ? username : 'Guest',
+        quizData: [{
+            name: 'General Knowledge',
+            score: '9',
+            id: '9',
+        },
+        {
+            name: 'Entertainment: Music',
+            score: '7',
+            id: '12',
+        }]
     },
 };
 
@@ -16,7 +26,7 @@ const reducer = (state = INITIAL_STATE, action) => {
             const newData = action.payload;
             return {
 
-                ...state, quizzes: {name: newData},
+                ...state, quizzes: {...state.quizzes,name: newData},
 
             };
 

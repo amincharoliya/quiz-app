@@ -2,11 +2,10 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
 
-import { connect } from "react-redux"
-import { additionData } from "../redux/Data/data.actions"
-
 import GlobalStyle from '../globalStyles';
 import { setTheme } from '../utils/settheme';
+
+import UserBlock from './UserBlock';
 
 const HeadWrapper = styled.div`
   display: flex;
@@ -194,7 +193,7 @@ const ThemeSwitch = styled.nav`
     }
 `
 
-const Header = (props) => {
+const Header = () => {
     const [togClass, setToggleClass] = React.useState('dark');
     let theme = localStorage.getItem('theme');
 
@@ -239,16 +238,15 @@ const Header = (props) => {
 
                         <Nav>
                             <ul>
-                                <li> <Link to="/user">{props.data.name}</Link> </li>
+                                <li>
+                                    <UserBlock />
+                                 </li>
                             </ul>
                         </Nav>
 
                         <ThemeSwitch>
                             {
-                                togClass === "light" ?
-                                <input type="checkbox" id="toggle" className="toggle--checkbox" onClick={SwitchTheme} checked />
-                                :
-                                <input type="checkbox" id="toggle" className="toggle--checkbox" onClick={SwitchTheme} />
+                                <input type="checkbox" id="toggle" className="toggle--checkbox" onChange={SwitchTheme} checked={togClass === "light" ? 'checked' : ''}  />
                             }
                             <label htmlFor="toggle" className="toggle--label">
                                 <span className="toggle--label-background"></span>
@@ -262,16 +260,4 @@ const Header = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-      data: state.data.quizzes,
-    }
-  }
-  
-  const mapDispatchToProps = dispatch => {
-    return {
-      additionData: (payload) => dispatch(additionData(payload))
-    }
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default Header;
