@@ -1,0 +1,57 @@
+import React from 'react';
+import styled from 'styled-components';
+
+import { connect } from "react-redux"
+
+import Header from './Header'
+import Footer from './Footer'
+import QuizHistory from './QuizHistory'
+
+const Container = styled.section`
+    background-color: var(--main-bg-color);
+    padding: 55px 15px;
+    min-height: calc(100vh - 132px);
+    display: flex;
+
+    h2 {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    main {
+        display: flex;
+        flex-flow: column;
+    }
+`
+
+const QuizHistoryBlock = styled.div`
+`
+
+const UserPage = (props) => {
+    const data = props.data;
+    return(
+        <>
+            <Header />
+            <Container>
+                <div className="wrapper">
+                    <main>
+                        <QuizHistoryBlock>
+                            <h2>Recently Taken Quizzes</h2>
+                            <QuizHistory data={data} />
+                        </QuizHistoryBlock>
+                    </main>
+                </div>
+            </Container>
+            <Footer/>
+        </>
+    )
+}
+
+const mapStateToProps = state => {
+    return {
+      data: state.data.quizzes.quizData,
+    }
+  }
+ 
+export default connect(mapStateToProps)(UserPage)

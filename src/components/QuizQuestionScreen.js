@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { connect } from "react-redux"
+import { additionQUIZ } from "../redux/Data/data.actions"
+
+import categories from '../utils/categories';
+
 
 const QuizQuestionsWrap = styled.div`
     text-align: center;
@@ -89,6 +94,25 @@ const QuizQuestionScreen = (props) => {
         setcurrentQuestion( currentQuestion + 1 ); //Increase counter for next question
         if( (currentQuestion+1) >= Questions.length ) { //If last question then show result screen
             setresultScreen(true);
+            let quizzes = localStorage.getItem('quizzes');
+            const date = new Date();
+            const recentQuiz = {
+                name: categories[Number(category)].title,
+                score: correctAnswer,
+                id: category,
+                date: date.toDateString()
+            }
+            if( quizzes ){
+                let quizzesParsed = JSON.parse(quizzes);
+                quizzesParsed = [...quizzesParsed, {...recentQuiz}];
+                localStorage.setItem('quizzes', JSON.stringify(quizzesParsed) );
+                additionQUIZ(quizzesParsed);
+            } else {
+                let quizzesParsed = [recentQuiz];
+                localStorage.setItem('quizzes', JSON.stringify(quizzesParsed));
+                additionQUIZ(quizzesParsed)
+            }
+
         }
     }
 
@@ -123,4 +147,16 @@ const QuizQuestionScreen = (props) => {
 
 }
 
-export default QuizQuestionScreen;
+const mapStateToProps = state => {
+    return {
+      data: state.data,
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        additionQUIZ: (payload) => dispatch(additionQUIZ(payload))
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(QuizQuestionScreen)
