@@ -23,7 +23,7 @@ const QuizItemListing = styled.section`
 
     > div {
         margin: 0 10px 20px 10px;
-        width: calc(33.33333% - 20px);
+        width: calc(50% - 20px);
     }
 
     p strong {

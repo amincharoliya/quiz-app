@@ -248,7 +248,7 @@ const DeviceMenu = styled.div`
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 28px;
+    height: 23px;
     width: 28px;
     display: block;
     cursor: pointer;

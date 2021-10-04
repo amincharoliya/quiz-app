@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 
 import Header from './Header'
 import Footer from './Footer'
+import AverageScore from './AverageScore'
 import QuizHistory from './QuizHistory'
 
 const Container = styled.section`
@@ -21,11 +22,32 @@ const Container = styled.section`
 
     main {
         display: flex;
-        flex-flow: column;
+        flex-flow: row;
+        position: relative;
+
+        @media screen and (max-width:920px) {
+            flex-flow: column;
+        }
+
     }
 `
 
 const QuizHistoryBlock = styled.div`
+    margin-left: 25px;
+    width: calc(100% - 275px);
+    @media screen and (max-width:920px) {
+        margin-left: 0;
+        width: 100%;
+    }
+`
+
+const AverageScoreWrap = styled.div`
+    width: 250px;
+    margin-top: 65px;
+
+    @media screen and (max-width:920px) {
+        margin: 0 auto 40px;
+    }
 `
 
 const UserPage = (props) => {
@@ -36,6 +58,9 @@ const UserPage = (props) => {
             <Container>
                 <div className="wrapper">
                     <main>
+                        <AverageScoreWrap>
+                            <AverageScore data={data} />
+                        </AverageScoreWrap>
                         <QuizHistoryBlock>
                             <h2>Recently Taken Quizzes</h2>
                             <QuizHistory data={data} />
