@@ -36,7 +36,7 @@ const AverageScore = ({ data }) => {
 
         if(data?.length) {
             const totalScore = data.map( (item) =>  item.score).reduce((a, b) => a + b)
-            return totalScore / data.length;
+            return (totalScore / data.length).toFixed(2);
         } else {
             return 0;
         }
