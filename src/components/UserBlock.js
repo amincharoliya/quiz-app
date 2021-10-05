@@ -109,7 +109,7 @@ const Button = styled.span`
 const CloseButton = styled.span`
     position: absolute;
     right: 5px;
-    top:0;
+    top: 0;
     font-size: 18px;
     color: #fff;
 
@@ -119,12 +119,23 @@ const CloseButton = styled.span`
     }
 `
 
+const NoUsernameError = styled.span`
+    display: block;
+    margin-bottom: 15px;
+`
+
 const UserBlock = (props) => {
     const [username, setUsername] = React.useState('');
+    const [NoUsername, setNoUsername] = React.useState('');
     const [popupVisible, setpopupVisible] = React.useState(false);
     const localUserName = window.localStorage.getItem('name');
 
     const setName = () => {
+        if(username === ''){
+            setNoUsername('Username can\'t be empty');
+            return;
+        }
+        setNoUsername('');
         props.additionData(username);
         window.localStorage.setItem('name',username);
         setpopupVisible(false);
@@ -165,6 +176,7 @@ const UserBlock = (props) => {
                     <CloseButton onKeyUp={ (event) => HandleEnterKey(event, () => setpopupVisible(false))} onClick={()=>(setpopupVisible(false))} tabIndex="0"><p>x</p></CloseButton>
                     <p>Edit your name</p>
                     <input type="text" value={username} onChange={(e)=> (setUsername(e.target.value))} autoFocus />
+                    {NoUsername ? <NoUsernameError>{NoUsername}</NoUsernameError> : '' }
                     <Button onKeyUp={ (event) => HandleEnterKey(event, () => setName())} onClick={ () => (setName())} tabIndex="0">Save</Button>
                 </Form>
             </Popup>
