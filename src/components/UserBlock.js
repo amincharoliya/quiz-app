@@ -52,6 +52,13 @@ const UserBlockWrapper = styled.div`
             width: 12px;
         }
     }
+
+    .user-name {
+        display: block;
+        overflow: hidden;
+        max-width: 90px;
+        text-overflow: ellipsis;
+    }
 `
 
 const Form = styled.div`
