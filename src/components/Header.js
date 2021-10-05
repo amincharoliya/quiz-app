@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import GlobalStyle from '../globalStyles';
 import { setTheme } from '../utils/settheme';
 
+import HandleEnterKey from '../utils/HandleEnterKey';
+
 import UserBlock from './UserBlock';
 
 const HeadWrapper = styled.div`
@@ -283,9 +285,6 @@ const DeviceMenu = styled.div`
         display: block;
     }
 `
-    
-
-    
 
 const Header = () => {
     const [togClass, setToggleClass] = React.useState('dark');
@@ -348,7 +347,7 @@ const Header = () => {
                             {
                                 <input type="checkbox" id="toggle" className="toggle--checkbox" onChange={SwitchTheme} checked={togClass === "light" ? 'checked' : ''}  />
                             }
-                            <label htmlFor="toggle" className="toggle--label">
+                            <label htmlFor="toggle" className="toggle--label" tabIndex="0" onKeyUp={ (event) => HandleEnterKey(event, () => SwitchTheme())}>
                                 <span className="toggle--label-background"></span>
                             </label>
                         </ThemeSwitch>

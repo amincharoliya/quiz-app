@@ -32,16 +32,16 @@ const Progress = styled.progress`
 `
 
 const AverageScore = ({ data }) => {
-    const avgScore = () => {
 
+    const avgScore = () => {
         if(data?.length) {
             const totalScore = data.map( (item) =>  item.score).reduce((a, b) => a + b)
             return (totalScore / data.length).toFixed(2);
         } else {
             return 0;
-        }
-        
+        }        
     };
+
     return(
         <AverageScoreWrap>
             <Progress max="10" value={avgScore()}></Progress>

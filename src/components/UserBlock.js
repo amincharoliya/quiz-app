@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import { connect } from "react-redux"
 import { additionData } from "../redux/Data/data.actions"
 
+import HandleEnterKey from '../utils/HandleEnterKey';
+
 import Popup from './Popup'
+
 const UserBlockWrapper = styled.div`
     display: flex;
     align-items: center;
@@ -15,6 +18,11 @@ const UserBlockWrapper = styled.div`
         height: 40px;
         width: 40px;
         position: relative;
+
+        > a {
+            height: 40px;
+            width: 40px;
+        }
 
         svg {
             height: 45px;
@@ -100,10 +108,15 @@ const Button = styled.span`
 
 const CloseButton = styled.span`
     position: absolute;
-    right: 0;
+    right: 5px;
     top:0;
     font-size: 18px;
     color: #fff;
+
+    p {
+        margin: 0;
+        line-height: 1;
+    }
 `
 
 const UserBlock = (props) => {
@@ -143,16 +156,16 @@ const UserBlock = (props) => {
             </div>
             <p>
                 <a href="/user" className="user-name">{props.data.name}</a>
-                <span className="pencil-icon" title="Edit Your Name" onClick= { () => (setpopupVisible(true) )}>
+                <span className="pencil-icon" title="Edit Your Name" onKeyUp={ (event) => HandleEnterKey(event, () => setpopupVisible(true))} onClick= { () => (setpopupVisible(true) )} tabIndex="0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z"/></svg>
                 </span>
             </p>
             <Popup popupVisible={popupVisible}>
                 <Form onSubmit={ (e) => ( e.preventDefault() ) }>
-                    <CloseButton onClick={()=>(setpopupVisible(false))}><p>x</p></CloseButton>
+                    <CloseButton onKeyUp={ (event) => HandleEnterKey(event, () => setpopupVisible(false))} onClick={()=>(setpopupVisible(false))} tabIndex="0"><p>x</p></CloseButton>
                     <p>Edit your name</p>
                     <input type="text" value={username} onChange={(e)=> (setUsername(e.target.value))} autoFocus />
-                    <Button onClick={ () => (setName())}>Save</Button>
+                    <Button onKeyUp={ (event) => HandleEnterKey(event, () => setName())} onClick={ () => (setName())} tabIndex="0">Save</Button>
                 </Form>
             </Popup>
         </UserBlockWrapper>
