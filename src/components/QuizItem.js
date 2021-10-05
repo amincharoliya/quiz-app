@@ -18,7 +18,7 @@ const QuizItemWrap = styled.div`
     }
 
     p {
-        min-height: 48px;
+        min-height: 68px;
     }
 
     .cta-button {
