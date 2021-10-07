@@ -128,7 +128,7 @@ const QuizQuestionScreen = (props) => {
 
     if(hasError) {
         return(
-            <p>It seems like we are unable to fetch questions for you. <span className="link" onClick={ (e)=>  ( window.location.reload() ) } >Retry</span> or wait for  a while.</p>
+            <p>It seems like we are unable to fetch questions for you. <span className="link" onClick={ (e)=>  ( window.location.reload() ) } >Retry again</span> or wait for  a while.</p>
         )
     }
 
