@@ -78,13 +78,23 @@ const QuizQuestionScreen = (props) => {
     const category = props.category.split(':')[1];
     const [Questions, setQuestions] = useState([]);
     const [currentQuestion, setcurrentQuestion] = useState(0);
+    const [hasError, setHasError] = useState(false);
     const [correctAnswer, setcorrectAnswer] = useState(0);
     const [resultScreen, setresultScreen] = useState(false);
 
     useEffect( ()=> {
         fetch( `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple` )
+        .then( (res) => {
+            if (!res.ok) {
+                setHasError(true);
+            }
+            return res;
+        })
         .then( (res) => res.json())
         .then( (data) => setQuestions(data.results))
+        .catch((error) => {
+            setHasError(true);
+        });
     }, [category]);
 
     const selectAnswer = (answer) => {
@@ -100,7 +110,7 @@ const QuizQuestionScreen = (props) => {
                 name: categories[Number(category)].title,
                 score: correctAnswer,
                 id: category,
-                date: date.toDateString()
+                date: date.toLocaleDateString()
             }
             if( quizzes ){
                 let quizzesParsed = JSON.parse(quizzes);
@@ -114,6 +124,12 @@ const QuizQuestionScreen = (props) => {
             }
 
         }
+    }
+
+    if(hasError) {
+        return(
+            <p>It seems like we are unable to fetch questions for you. <span className="link" onClick={ (e)=>  ( window.location.reload() ) } >Retry</span> or wait for  a while.</p>
+        )
     }
 
     if(resultScreen) {

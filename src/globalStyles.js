@@ -72,6 +72,10 @@ const GlobalStyle = createGlobalStyle`
             box-shadow: none;
         }
     }
+    .link {
+        color: #f53838;
+        cursor: pointer;
+    }
     h1,h2,h3,p,ul{margin-bottom:25px;color:var(--main-text-color);}
     li{margin-bottom:10px;}
     p,ul{font-weight: normal;line-height: 1.4;}

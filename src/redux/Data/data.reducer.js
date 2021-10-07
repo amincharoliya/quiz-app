@@ -1,12 +1,13 @@
 import { ADDITION, ADDQUIZ } from './data.types';
 
 const username = window.localStorage.getItem('name');
-const LocalQuizData = JSON.parse( window.localStorage.getItem('quizzes') );
+const LocalQuizData = window.localStorage.getItem('quizzes');
+const LocalQuizDataParsed = LocalQuizData !== null || LocalQuizData !== '' ? JSON.parse(LocalQuizData) : '';
 
 const INITIAL_STATE = {
     quizzes: {
         name: username !== null ? username : 'Guest',
-        quizData: LocalQuizData !== null ? LocalQuizData : null,
+        quizData: LocalQuizDataParsed !== '' ? LocalQuizDataParsed : null,
     },
 };
 

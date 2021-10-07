@@ -7,6 +7,7 @@ import Header from './Header'
 import Footer from './Footer'
 import AverageScore from './AverageScore'
 import QuizHistory from './QuizHistory'
+import Chart from './Chart'
 
 const Container = styled.section`
     background-color: var(--main-bg-color);
@@ -43,10 +44,10 @@ const QuizHistoryBlock = styled.div`
 
 const AverageScoreWrap = styled.div`
     width: 250px;
-    margin-top: 65px;
 
     @media screen and (max-width:920px) {
-        margin: 0 auto 40px;
+        margin: 0 auto 35px;
+        width: 100%;
     }
 `
 
@@ -57,12 +58,13 @@ const UserPage = (props) => {
             <Header />
             <Container>
                 <div className="wrapper">
+                    <h2>Recently Taken Quizzes</h2>
+                    <Chart data={data} />
                     <main>
                         <AverageScoreWrap>
                             <AverageScore data={data} />
                         </AverageScoreWrap>
                         <QuizHistoryBlock>
-                            <h2>Recently Taken Quizzes</h2>
                             <QuizHistory data={data} />
                         </QuizHistoryBlock>
                     </main>

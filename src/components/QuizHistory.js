@@ -19,7 +19,6 @@ const NoData = styled.div`
 const QuizItemListing = styled.section`
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
 
     > div {
         margin: 0 10px 20px 10px;
@@ -60,7 +59,7 @@ const QuizHistory = (props) => {
       key={Number(i)}
       description={`You Scored <strong>${quizData[i].score} out of 10 </strong> <br/> <br/> Taken on <strong>${quizData[i].date}</strong>`}
       title={quizData[i].name}
-      ctaText="Take quiz again" ctaLink={`/quiz:${Number(quizData[i].id)}`} /> ) );
+      ctaText="Take quiz again" ctaLink={`/quiz:${Number(quizData[i].id)}`} /> ) ).reverse();
 
     return(
       <QuizItemListing>
