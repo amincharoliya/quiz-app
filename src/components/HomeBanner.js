@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
+import Button from './Button';
+
 const Banner = styled.div`
   display: flex;
   align-items: center;
@@ -13,7 +15,6 @@ const Banner = styled.div`
       padding: 25px 0;
   }
 `
-
 const Column = styled.div`
     width: 50%;
     padding: 55px 15px;
@@ -49,21 +50,6 @@ const Heading = styled.h1`
       font-size: 28px;
     }
 `
-const CTA = styled.span`
-    color: #fff !important;
-    text-decoration: none;
-    background-color: #f53838;
-    border-radius: 5px;
-    padding: 15px 20px;
-    float: left;
-    min-width: 140px;
-    box-shadow: 0 5px 10px rgb(245 56 56 / 27%);
-    transition: all ease 0.3s;
-
-    &:hover {
-        box-shadow: inset 0 0 100px rgba(0,0,0,0.2), 0 5px 10px rgb(245 56 56 / 27%);
-    }
-`
 
 const HomeBanner = () => {
     return (
@@ -74,7 +60,7 @@ const HomeBanner = () => {
                         Brush up your knowledge<br/> by taking <strong> Quizzes</strong>
                     </Heading>
                     <Link to='/quizzes'>
-                        <CTA href="/">AtoZ Quiz</CTA>
+                        <Button Label="AtoZ Quiz" />
                     </Link>
                 </Column>
                 <Column>
