@@ -114,7 +114,7 @@ const QuizQuestionScreen = (props) => {
             }
             if( quizzes ){
                 let quizzesParsed = JSON.parse(quizzes);
-                if(quizzesParsed.length > 19){
+                if(quizzesParsed.length > 14){
                     quizzesParsed.shift();
                 }
                 quizzesParsed = [...quizzesParsed, {...recentQuiz}];
