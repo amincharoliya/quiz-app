@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import QuizItem from './QuizItem';
-
+import QuizItem from '../parts/QuizItem';
 import categories from '../utils/categories';
 
 const QuizItemListWrap = styled.section`
@@ -21,7 +20,6 @@ const QuizItemListWrap = styled.section`
       }
     }
 `
-
 const QuizItemListing = styled.section`
     display: flex;
 
@@ -47,9 +45,9 @@ const QuizItemList = () => {
             <div className="wrapper">
                 <h2>Most taken quizzes</h2>
                 <QuizItemListing>
-                    <QuizItem  title={categories[9].title} description={categories[9].description} ctaLink={`/quiz:${9}`} />
-                    <QuizItem  title={categories[18].title} description={categories[18].description} ctaLink={`/quiz:${18}`} />
-                    <QuizItem  title={categories[27].title} description={categories[27].description} ctaLink={`/quiz:${27}`} />
+                    <QuizItem title={categories[9].title} description={categories[9].description} ctaLink={`/quiz:${9}`} />
+                    <QuizItem title={categories[18].title} description={categories[18].description} ctaLink={`/quiz:${18}`} />
+                    <QuizItem title={categories[27].title} description={categories[27].description} ctaLink={`/quiz:${27}`} />
                 </QuizItemListing>
             </div>
         </QuizItemListWrap>

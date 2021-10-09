@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
-import QuizItem from './QuizItem'
+import QuizItem from '../parts/QuizItem'
 
 const NoData = styled.div`
   padding: 35px 0;

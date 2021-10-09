@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Banner = styled.div`
@@ -15,7 +14,6 @@ const Banner = styled.div`
 const FeatureBlockWrap = styled.section`
 background-color: var(--secondary-bg-color);
 `
-
 const Column = styled.div`
     width: 50%;
     padding: 55px 15px;
@@ -35,7 +33,6 @@ const Column = styled.div`
 
     }
 `
-
 const Heading = styled.h2`
     font-size: 34px;
     line-height: 1.3;
@@ -46,7 +43,6 @@ const Heading = styled.h2`
       font-size: 28px;
     }
 `
-
 const Listing = styled.ul`
     list-style: none;
     padding:0;
