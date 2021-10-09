@@ -37,7 +37,7 @@ const QuizItem = (props) => {
         <QuizItemWrap>
             <h3 dangerouslySetInnerHTML={{__html: props.title}} />
             <p dangerouslySetInnerHTML={{__html: props.description}} />
-            <Link to={props.ctaLink} className="cta-button"><Button Label={props.ctaText ? props.ctaText : 'Take Quiz'} Arrow={true} /></Link>
+            <Link to={props.ctaLink} className="cta-button"><Button Label={props.ctaText ? props.ctaText : 'Take Quiz'} /></Link>
         </QuizItemWrap>
     )
 }
