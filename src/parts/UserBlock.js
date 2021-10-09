@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { connect } from "react-redux"
 import { additionData } from "../redux/Data/data.actions"
 
+import useLocalStorage from '../utils/useLocalStorage';
 import HandleEnterKey from '../utils/HandleEnterKey';
 
 import Popup from './Popup'
@@ -57,6 +58,7 @@ const UserBlockWrapper = styled.div`
         display: block;
         overflow: hidden;
         max-width: 90px;
+        white-space: nowrap;
         text-overflow: ellipsis;
     }
 `
@@ -125,10 +127,9 @@ const NoUsernameError = styled.span`
 `
 
 const UserBlock = (props) => {
-    const [username, setUsername] = React.useState('');
-    const [NoUsername, setNoUsername] = React.useState('');
     const [popupVisible, setpopupVisible] = React.useState(false);
-    const localUserName = window.localStorage.getItem('name');
+    const [NoUsername, setNoUsername] = React.useState('');
+    const [username, setUsername ] = useLocalStorage('name', 'Guest', props.additionData, false);
 
     const setName = () => {
         if(username === ''){
@@ -136,23 +137,12 @@ const UserBlock = (props) => {
             return;
         }
         setNoUsername('');
-        props.additionData(username);
-        window.localStorage.setItem('name',username);
         setpopupVisible(false);
     }
 
     React.useEffect( () => {
-        if(localUserName === null) {
-            setUsername('Guest');
-            window.localStorage.setItem('name','Guest');
-            props.additionData('Guest');
-        } else {
-            setUsername(localUserName);
-            window.localStorage.setItem('name',localUserName);
-            props.additionData(localUserName);
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[localUserName])
+        setUsername(username);
+    },[username, setUsername]);
 
     return(
         <UserBlockWrapper>

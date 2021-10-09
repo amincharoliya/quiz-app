@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { connect } from "react-redux"
 import { additionQUIZ } from "../redux/Data/data.actions"
 
+import useLocalStorage  from '../utils/useLocalStorage';
 import categories from '../utils/categories';
 
 
@@ -81,6 +82,7 @@ const QuizQuestionScreen = (props) => {
     const [hasError, setHasError] = useState(false);
     const [correctAnswer, setcorrectAnswer] = useState(0);
     const [resultScreen, setresultScreen] = useState(false);
+    const [quizzes, setQuizzes] = useLocalStorage('quizzes', '', additionQUIZ);
 
     useEffect( ()=> {
         fetch( `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple` )
@@ -104,7 +106,6 @@ const QuizQuestionScreen = (props) => {
         setcurrentQuestion( currentQuestion + 1 ); //Increase counter for next question
         if( (currentQuestion+1) >= Questions.length ) { //If last question then show result screen
             setresultScreen(true);
-            let quizzes = localStorage.getItem('quizzes');
             const date = new Date();
             const recentQuiz = {
                 name: categories[Number(category)].title,
@@ -112,18 +113,15 @@ const QuizQuestionScreen = (props) => {
                 id: category,
                 date: date.toLocaleDateString()
             }
-            if( quizzes ){
-                let quizzesParsed = JSON.parse(quizzes);
-                if(quizzesParsed.length > 14){
-                    quizzesParsed.shift();
+            if( quizzes !== '' ){
+                if(quizzes.length > 14){
+                    quizzes.shift();
                 }
-                quizzesParsed = [...quizzesParsed, {...recentQuiz}];
-                localStorage.setItem('quizzes', JSON.stringify(quizzesParsed) );
-                additionQUIZ(quizzesParsed);
+                let quizzesParsed = [...quizzes, {...recentQuiz}];
+                setQuizzes(quizzesParsed);
             } else {
                 let quizzesParsed = [recentQuiz];
-                localStorage.setItem('quizzes', JSON.stringify(quizzesParsed));
-                additionQUIZ(quizzesParsed)
+                setQuizzes(quizzesParsed);
             }
 
         }
