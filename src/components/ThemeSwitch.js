@@ -121,12 +121,12 @@ const ThemeSwitch = () => {
     }
 
     useEffect( () => {
-        if (localStorage.getItem('theme') === 'theme-dark') {
-            setToggleClass('dark')
-            setTheme('theme-dark');
-        } else if (localStorage.getItem('theme') === 'theme-light') {
+        if (localStorage.getItem('theme') === 'theme-light') {
             setToggleClass('light')
             setTheme('theme-light');
+        } else {
+            setToggleClass('dark')
+            setTheme('theme-dark');
         }
     }, [theme]);
 
