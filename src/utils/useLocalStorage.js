@@ -3,10 +3,10 @@ import React from 'react';
 function useLocalStorage( key, initialValue="", setterFunc, serialize=true){
     const [ state, setState ] = React.useState( () => {
         const valueInLocal = window.localStorage.getItem(key);
-        window.localStorage.setItem(key, serialize ? JSON.stringify(valueInLocal) : valueInLocal );
         if( valueInLocal ){
             return serialize ? JSON.parse(valueInLocal) : valueInLocal;
         }
+        window.localStorage.setItem(key, serialize ? JSON.stringify(initialValue) : initialValue );
         return initialValue;
     });
 

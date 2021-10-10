@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
 import { connect } from "react-redux"
-import { additionQUIZ } from "../redux/Data/data.actions"
 
+import { additionQUIZ } from "../redux/Data/data.actions"
 import useLocalStorage  from '../utils/useLocalStorage';
 import categories from '../utils/categories';
-
 
 const QuizQuestionsWrap = styled.div`
     text-align: center;
@@ -17,7 +15,6 @@ const QuizQuestionsWrap = styled.div`
     justify-content: center;
     min-height: calc(100vh - 132px);
 `
-
 const QuizQuestion = styled.div`
     display: flex;
     flex-flow: column;
@@ -33,7 +30,6 @@ const QuizQuestion = styled.div`
         flex-wrap: wrap;
     }
 `
-
 const QuizQuestionHeading = styled.h2`
     font-size: 28px;
     margin-bottom: 25px;
@@ -72,40 +68,38 @@ const QuizQuestionOption = styled.button`
     }
 `
 
-
-
 const QuizQuestionScreen = (props) => {
-
     const category = props.category.split(':')[1];
-    const [Questions, setQuestions] = useState([]);
+    const [Questions, setQuestions] = useState('');
     const [currentQuestion, setcurrentQuestion] = useState(0);
-    const [hasError, setHasError] = useState(false);
     const [correctAnswer, setcorrectAnswer] = useState(0);
-    const [resultScreen, setresultScreen] = useState(false);
+    const [status, setStatus] = useState('fetching');
     const [quizzes, setQuizzes] = useLocalStorage('quizzes', '', additionQUIZ);
 
     useEffect( ()=> {
         fetch( `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple` )
         .then( (res) => {
             if (!res.ok) {
-                setHasError(true);
+                setStatus('error');
             }
             return res;
         })
         .then( (res) => res.json())
-        .then( (data) => setQuestions(data.results))
+        .then( (data) => {
+            setQuestions(data.results);
+            setStatus('resolved');
+        })
         .catch((error) => {
-            setHasError(true);
+            setStatus('error');
         });
     }, [category]);
 
-    const selectAnswer = (answer) => {
-        if( answer ===  Questions[currentQuestion].correct_answer) { //Increase if true
-            setcorrectAnswer( correctAnswer + 1 );
+    useEffect( ()=> {
+        if(!Questions){
+            return;
         }
-        setcurrentQuestion( currentQuestion + 1 ); //Increase counter for next question
-        if( (currentQuestion+1) >= Questions.length ) { //If last question then show result screen
-            setresultScreen(true);
+        if(currentQuestion >= Questions.length) { //If last question then save result into state and show result screen
+            setStatus('quizEnded');
             const date = new Date();
             const recentQuiz = {
                 name: categories[Number(category)].title,
@@ -113,9 +107,9 @@ const QuizQuestionScreen = (props) => {
                 id: category,
                 date: date.toLocaleDateString()
             }
-            if( quizzes !== '' ){
+            if( quizzes !== '' ){ //Check if History has 15 attempts saved
                 if(quizzes.length > 14){
-                    quizzes.shift();
+                    quizzes.shift(); //Remove one older attempt and make it 15 only
                 }
                 let quizzesParsed = [...quizzes, {...recentQuiz}];
                 setQuizzes(quizzesParsed);
@@ -123,29 +117,42 @@ const QuizQuestionScreen = (props) => {
                 let quizzesParsed = [recentQuiz];
                 setQuizzes(quizzesParsed);
             }
+        }
+    },[currentQuestion]);
 
+    const selectAnswer = (answer) => {
+        setcurrentQuestion( currentQuestion + 1 ); //Increase counter for next question
+        if( answer ===  Questions[currentQuestion].correct_answer) { //Increase if true
+            setcorrectAnswer( correctAnswer + 1 );
+        }
+        const newIndex = currentQuestion + 1;
+        if(newIndex >= Questions.length) {
+            setStatus('quizEnded');
         }
     }
 
-    if(hasError) {
+    if(status === 'fetching'){
+        return <p>Fetching questions...</p>
+    }
+
+    if( status === 'error') {
         return(
             <p>It seems like we are unable to fetch questions for you. <span className="link" onClick={ (e)=>  ( window.location.reload() ) } >Retry again</span> or wait for  a while.</p>
         )
     }
 
-    if(resultScreen) {
+    if( status === 'quizEnded') {
         return (
-                <QuizQuestion>
-                    <p className="answer_block">{`Correct Answers: ${correctAnswer} out of ${Questions.length}`} <button onClick={ () => window.location.reload() } className="button">Take Quiz again</button></p>
-                </QuizQuestion>
-            )
+            <QuizQuestion>
+                <p className="answer_block">{`Correct Answers: ${correctAnswer} out of ${Questions.length}`} <button onClick={ () => window.location.reload() } className="button">Take Quiz again</button></p>
+            </QuizQuestion>
+        )
     }
-    
-     const answers = Questions.length ? [Questions[currentQuestion].correct_answer, ...Questions[currentQuestion].incorrect_answers].sort( () => Math.random() - 0.5) : ''; //Shuffle correct and other incorrect answers
-    
-    return(
-        
-        Questions.length > 0 ? (<QuizQuestionsWrap>
+
+    if( status === 'resolved') {
+        const answers = Questions ? [Questions[currentQuestion].correct_answer, ...Questions[currentQuestion].incorrect_answers].sort( () => Math.random() - 0.5) : ''; //Shuffle correct and other incorrect answers
+        return(
+            <QuizQuestionsWrap>
             <p>Question {currentQuestion+1}</p>
             <div className="wrapper">
                 <QuizQuestion>
@@ -158,10 +165,9 @@ const QuizQuestionScreen = (props) => {
                     </QuizQuestionOptionsWrap>
                 </QuizQuestion>
             </div>
-        </QuizQuestionsWrap>) :
-        (<p>Fetching questions...</p>)
-    )
-
+        </QuizQuestionsWrap>
+        )
+    }    
 }
 
 const mapStateToProps = state => {
